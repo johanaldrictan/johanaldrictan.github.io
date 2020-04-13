@@ -7,6 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
+theme: minimal-mistakes-jekyll
 minimal_mistakes_skin    : "dark"
 title                    : "Johan Tan"
 title_separator          : "-"
