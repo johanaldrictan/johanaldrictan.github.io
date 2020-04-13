@@ -6,7 +6,6 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-theme: "minima"
 locale                   : "en-US"
 title                    : "Johan Tan"
 title_separator          : "-"
@@ -180,15 +179,13 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # _teaching
+  # _campprojects
   - scope:
       path: ""
       type: campprojects
     values:
       layout: single
       author_profile: true
-      share: true
-      comments: true
   # _publications
   - scope:
       path: ""
@@ -205,8 +202,6 @@ defaults:
     values:
       layout: single
       author_profile: true
-      share: true
-      comment: true
   # _talks
   - scope:
       path: ""
