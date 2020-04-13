@@ -82,8 +82,7 @@ analytics:
 author:
   name             : "Johan Tan"
   avatar           : "profile.png"
-  bio              : "Your biography for the left-hand sidebar"
-  location         : "Location"
+  bio              : "Audio Programmer and Sound Designer focused on games."
   employer         :
   email            :
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
@@ -94,16 +93,15 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "academicpages"
+  github           : "johanaldrictan"
   google_plus      :
   keybase          :
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         :
-  orcid            : "http://orcid.org/yourorcidurl"
+  linkedin         : "johanaldrictan"
   pinterest        :
-  soundcloud       :
+  soundcloud       : "johan-aldric-tan"
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
@@ -113,6 +111,7 @@ author:
   xing             :
   youtube          :
   wikipedia        :
+  itchio           : "johantan"
 
 
 # Reading Files
