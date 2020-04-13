@@ -20,8 +20,8 @@ audio programs.
 Currently, I'm planning to work on stuff with JUCE at some point once I have time
 off my other obligations to school and existing projects.
 
-##About Me
+About Me
 ======
-: Hey! I'm Johan Tan. I'm a senior Computer Science major at the University of California, Irvine (UCI). I am currently an officer for the Audio department at the Video Game Development Club at UCI [VGDC](https://sites.google.com/uci.edu/vgdcuci/home). I help club members by teaching informative workshops on topics ranging from basics of DAWs to implementing sounds into games using middleware. I also help members troubleshoot audio issues both in the DAW and in their game engine.
+ Hey! I'm Johan Tan. I'm a senior Computer Science major at the University of California, Irvine (UCI). I am currently an officer for the Audio department at the Video Game Development Club at UCI [VGDC](https://sites.google.com/uci.edu/vgdcuci/home). I help club members by teaching informative workshops on topics ranging from basics of DAWs to implementing sounds into games using middleware. I also help members troubleshoot audio issues both in the DAW and in their game engine.
 
-: Now one might ask, "What does a computer science major do with audio?". I enjoy the combination of the two disciplines I love so much whether it be creating tools to help sound designers create or work or implementing sounds into games, To achieve my goal to help sound designers (and because I love sound design so much), being a sound designer myself was a natural progression. 
+ Now one might ask, "What does a computer science major do with audio?". I enjoy the combination of the two disciplines I love so much whether it be creating tools to help sound designers create or work or implementing sounds into games, To achieve my goal to help sound designers (and because I love sound design so much), being a sound designer myself was a natural progression. 
