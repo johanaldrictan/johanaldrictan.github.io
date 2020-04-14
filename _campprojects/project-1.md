@@ -11,6 +11,7 @@ author_profile: false
 <div>
 <p id="name"> Your name will show up here. Just start typing! </p>
 </div>
+<script src="{{ site.baseurl }}{% link _campprojects/js/simplesynth.js %}"></script>
 <script src="{{ site.baseurl }}{% link _campprojects/js/project-1.js %}"></script>
 ---
 ## About Chornomina
