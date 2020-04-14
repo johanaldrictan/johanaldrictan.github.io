@@ -6,16 +6,16 @@ Web API"
 collection: campprojects
 author_profile: false
 ---
+<script src="{{ site.baseurl }}{% link _campprojects/js/simplesynth.js %}"></script>
+<script src="{{ site.baseurl }}{% link _campprojects/js/project-1.js %}"></script>
+
 ## Type Your Name!
 
 <div>
 <p id="name"> Your name will show up here. Just start typing! </p>
 </div>
-<script src="{{ site.baseurl }}{% link _campprojects/js/simplesynth.js %}"></script>
-<script src="{{ site.baseurl }}{% link _campprojects/js/project-1.js %}"></script>
----
-
-##About the algorithm
+======
+### About the algorithm
 
  When you start to type, the algorithm takes into consideration the starting letter of your first name. Through the first letter of your first name, the algorithm decides the key of the chord it will build as well as determine whether the chord will be major or minor.
 
