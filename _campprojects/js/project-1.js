@@ -3,30 +3,32 @@ var hasPressedSpace = false;
 var outputText = document.getElementById("name");
 
 var synth = new simpleSynth();
-
-var active_chord_gain = {};
-var active_chord_notes = [];
-var active_arp_notes = [];
-
 var c = new chord();
 
 function add_letter(letterCode){
-  //if(firstTimeTyped){
-    c.setupRoot(letterCode);
-    add_chordnote(synth.noteFreq[3][c.root]);
+  if(!hasPressedSpace){
+    if(firstTimeTyped){
+      c.setupRoot(letterCode);
+      var values = c.getNextNote();
+      synth.add_chordnote(synth.noteFreq[values[1]+c.octave][values[0]]);
+    }
+    else{
+      var values = c.getNextNote();
+      synth.add_chordnote(synth.noteFreq[values[1]+c.octave][values[0]]);
+    }
+  }
+  else{
+    var values = c.pickRandomFromScale();
+    synth.add_arpnote(synth.noteFreq[5][values[0]])
+  }
 }
 function remove_letter(){
-  //remove_chordnote
-}
-
-function add_chordnote(freq){
-  synth.play_short(freq);
-}
-function remove_chordnote(freq){
-  active_chord_notes.pop();
-  if(!active_chord_notes.includes(freq)){
-    active_chord_gain[freq].gain.exponentialRampToValueAtTime(CHORD_LEVEL, audioCtx.current +2);
-    active_chord_gain.pop();
+  if(!hasPressedSpace){
+    c.removeLastNote();
+    synth.remove_chordnote();
+  }
+  else{
+    synth.remove_arpnote();
   }
 }
 
@@ -38,6 +40,7 @@ function onKeyPress(e){
     var keyTyped = event.key.toLowerCase();
     if(event.keyCode === 32){
       document.getElementById("name").innerHTML += keyTyped;
+      hasPressedSpace = true;
       return;
     }
     if (event.keyCode >= 65 && event.keyCode <= 90){
@@ -51,6 +54,10 @@ function onKeyPress(e){
   }
   else if(event.key === "Backspace" && !firstTimeTyped){
     text = document.getElementById("name").innerHTML;
+    if(text.charAt(text.length - 1) === " "){
+      hasPressedSpace = false;
+    }
+    remove_letter();
     document.getElementById("name").innerHTML = text.slice(0, -1);
     if(document.getElementById("name").innerHTML == ""){
       document.getElementById("name").innerHTML = "Your name will show up here. Just start typing!";

@@ -14,5 +14,3 @@ author_profile: false
 <script src="{{ site.baseurl }}{% link _campprojects/js/simplesynth.js %}"></script>
 <script src="{{ site.baseurl }}{% link _campprojects/js/project-1.js %}"></script>
 ---
-## About Chornomina
-: This is a test for more stuff

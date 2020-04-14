@@ -1,5 +1,5 @@
 const CHORD_LEVEL = .1; //volume of the individual notes
-const ARP_LEVEL = .005;
+const ARP_LEVEL = .5;
 
 const CHORD_LEVEL_START = .00001;
 const ARP_LEVEL_START = .00001;
@@ -99,7 +99,11 @@ function simpleSynth(){
   this.noteFreq = this.createNoteTable();
   this.audioCtx = new AudioContext();
 
-  this.play_long = function(freq){
+  this.active_chord_gain = {};
+  this.active_chord_notes = [];
+  this.active_arp_notes = [];
+
+  this.play_chordtone = function(freq){
     var osc = this.audioCtx.createOscillator();
     osc.frequency.setValueAtTime(freq, this.audioCtx.currentTime);
     osc.type = "sine";
@@ -113,7 +117,7 @@ function simpleSynth(){
     noteGain.gain.exponentialRampToValueAtTime(CHORD_LEVEL, this.audioCtx.currentTime + .125)
     return noteGain;
   }
-  this.play_short = function(freq){
+  this.play_arptone = function(freq, delay){
     var osc = this.audioCtx.createOscillator();
     osc.frequency.setValueAtTime(freq, this.audioCtx.currentTime);
     osc.type = "triangle";
@@ -121,16 +125,41 @@ function simpleSynth(){
     var noteGain = this.audioCtx.createGain();
     osc.connect(noteGain);
     noteGain.connect(this.audioCtx.destination);
-    var start_time = this.audioCtx.currentTime;
+    var start_time = this.audioCtx.currentTime  + delay / 1000;
+    noteGain.gain.setValueAtTime(ARP_LEVEL, this.audioCtx.currentTime);
     osc.start(start_time);
-    noteGain.gain.exponentialRampToValueAtTime(CHORD_LEVEL_START, start_time + 3);
+    noteGain.gain.exponentialRampToValueAtTime(ARP_LEVEL_START, start_time + 3);
+  }
+
+  this.add_chordnote = function(freq){
+    if (!this.active_chord_notes.includes(freq)) {
+          this.active_chord_notes.push(freq);
+          this.active_chord_gain[freq] = this.play_chordtone(freq);
+      } else
+          this.active_chord_notes.push(freq);
+  }
+  this.remove_chordnote = function(){
+    var freq = this.active_chord_notes.pop();
+    this.active_chord_gain[freq].gain.exponentialRampToValueAtTime(0.0001, synth.audioCtx.currentTime +2);
+    delete this.active_chord_gain[freq];
+  }
+  this.add_arpnote = function(freq){
+    this.active_arp_notes.push(freq);
+    this.play_arptone(freq, 0);
+  }
+  this.remove_arpnote = function(){
+    this.active_arp_notes.pop();
   }
 }
 
 function chord(){
   this.root;
+  this.octave = 2;
   this.isMajor;
+  this.chordNotes = [];
 
+  this.majorScale = [0,2,4,5,7,9,11,12];
+  this.minorScale = [0,2,3,5,7,8,10,12];
   this.setupRoot = function(letterCode){
     var offsetFromA = letterCode - 65;
     if(offsetFromA < 12){
@@ -148,6 +177,48 @@ function chord(){
         this.root = offsetFromY;
         this.isMajor = true;
       }
+    }
+  }
+  this.getNextNote = function(){
+    if(this.chordNotes.length === 0){
+      this.chordNotes.push(this.root);
+      return [this.root, 0];
+    }
+    else{
+      if(this.isMajor){
+        var noteOffset = (2*this.chordNotes.length + 1)%this.majorScale.length;
+        var octaveGainFromOffset = Math.floor((2*this.chordNotes.length + 1)/this.majorScale.length);
+        var newNote = (this.root + this.majorScale[noteOffset]) % 12;
+        var octave = Math.floor(((this.root + this.majorScale[noteOffset]) / 12)+ octaveGainFromOffset);
+        this.chordNotes.push(newNote);
+        return [newNote, octave];
+      }
+      else{
+        var noteOffset = (2*this.chordNotes.length + 1)%this.minorScale.length;
+        var newNote = (this.root + this.minorScale[noteOffset]) % 12;
+        var octave = Math.floor((this.root + this.minorScale[noteOffset]) / 12);
+        this.chordNotes.push(newNote);
+        return [newNote, octave];
+      }
+    }
+  }
+  this.removeLastNote = function(){
+    this.chordNotes.pop();
+  }
+  this.pickRandomFromScale = function(){
+    if(this.isMajor){
+      var randomIndex = Math.floor(Math.random() * Math.floor(this.majorScale.length));
+      var newNote = (this.root + this.majorScale[randomIndex]) % 12;
+      var octave = Math.floor(((this.root + this.majorScale[randomIndex]) / 12));
+      this.chordNotes.push(newNote);
+      return [newNote, octave];
+    }
+    else{
+      var randomIndex = Math.floor(Math.random() * Math.floor(this.minorScale.length));
+      var newNote = (this.root + this.minorScale[randomIndex]) % 12;
+      var octave = Math.floor(((this.root + this.minorScale[randomIndex]) / 12));
+      this.chordNotes.push(newNote);
+      return [newNote, octave];
     }
   }
 
