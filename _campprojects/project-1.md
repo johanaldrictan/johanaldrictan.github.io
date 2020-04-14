@@ -14,7 +14,7 @@ author_profile: false
 <div>
 <p id="name"> Your name will show up here. Just start typing! </p>
 </div>
-======
+
 ### About the algorithm
 
  When you start to type, the algorithm takes into consideration the starting letter of your first name. Through the first letter of your first name, the algorithm decides the key of the chord it will build as well as determine whether the chord will be major or minor.
