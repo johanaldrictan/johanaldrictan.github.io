@@ -4,11 +4,14 @@ excerpt: "This is a program that plays drum hits as you type your name with a su
 the end when you press enter. This project is done purely through Javascript's
 Web API"
 collection: campprojects
+author_profile: false
 ---
-## Type Something
+## Type Your Name!
 
-<input type="text" id="textbox" name="textbox"><br><br>
-
-
+<div>
+<p id="name"> Your name will show up here. Just start typing! </p>
+</div>
+<script src="{{ site.baseurl }}{% link _campprojects/js/project-1.js %}"></script>
+---
 ## About Chornomina
 : This is a test for more stuff
