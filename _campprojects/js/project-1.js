@@ -13,7 +13,7 @@ var c = new chord();
 function add_letter(letterCode){
   //if(firstTimeTyped){
     c.setupRoot(letterCode);
-    add_chordnote(synth.noteFreq[3][c.root])
+    add_chordnote(synth.noteFreq[3][c.root]);
 }
 function remove_letter(){
   //remove_chordnote
