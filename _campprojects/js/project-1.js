@@ -8,6 +8,7 @@ var c = new chord();
 function add_letter(letterCode){
   if(!hasPressedSpace){
     if(firstTimeTyped){
+      c = new chord();
       c.setupRoot(letterCode);
       var values = c.getNextNote();
       synth.add_chordnote(synth.noteFreq[values[1]+c.octave][values[0]]);
@@ -57,7 +58,9 @@ function onKeyPress(e){
     if(text.charAt(text.length - 1) === " "){
       hasPressedSpace = false;
     }
-    remove_letter();
+    else{
+      remove_letter();
+    }
     document.getElementById("name").innerHTML = text.slice(0, -1);
     if(document.getElementById("name").innerHTML == ""){
       document.getElementById("name").innerHTML = "Your name will show up here. Just start typing!";
