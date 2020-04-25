@@ -5,12 +5,23 @@ collection: campprojects
 author_profile: false
 ---
 ### Max Patch
-[Download patch here](http://academicpages.github.io/files/paper1.pdf)
+[Download patch here](https://github.com/johanaldrictan/johanaldrictan.github.io/raw/master/files/Johan_Tan-3xOsc.zip)
 
-### About the Max Patch
+### How to use the Max Patch
 
- When you start to type, the algorithm takes into consideration the starting letter of your first name. Through the first letter of your first name, the algorithm decides the key of the chord it will build as well as determine whether the chord will be major or minor.
+First step.
+Make sure to turn on all the desired oscillators and set desired mix level.(See BUG note in patch for details)
 
-Once the key of the chord is decided, the algorithm then stacks notes for the chord according to the scale where the determined chord is the root of. It will stack notes according to the 1,3,5,7,... and so on degrees of the scale.
+Set desired waveform for each oscillator(or leave them off).
+Feel free to mess with the ADSR values on each osc as well.
 
-Once a space is pressed, the mode of the oscillator switches into a short tone which will play randomized notes within the scale as you type.
+Coarse pitch lets you set the pitch of the oscillator relative to the pressed MIDI note in semitones.
+
+Once finished with the oscillator settings, move on to the modulation settings.
+
+There are two components. A frequency modulator and an amplitude modulator.
+The frequency modulator only needs a frequency given to it.
+
+The amplitude modulator needs both a frequency AND an amplitude given to it.
+
+Other than that, go wild on the params. I would recommend turning the gain down though.
